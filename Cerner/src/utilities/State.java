@@ -1,5 +1,5 @@
 package utilities;
 
 public enum State {
-	MO, KS, IA, AK, IL, NE, 
+	MO, KS, IA, AK, IL, NE, OK
 }
