@@ -1,22 +1,25 @@
 package Patient;
 
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import Demographics.Address;
 import Demographics.Person;
-import Demographics.Phone;
+import Demographics.PhoneNumber;
 import utilities.CircularQueue;
-import utilities.DateTime;
+
 
 public class Patient extends Person{
 	public List<Allergy> allergies;
 	public List<Diagnosis> diagnosis;
 	public List<Medication> medications;
 	public CircularQueue<Temperature> temp;
-	public DateTime lastSeen;
-	public DateTime dob;
+	public Calendar lastSeen;
+	public Date dob;
 	
-	public Patient(String firstName, String lastName, Address address, Phone phone, DateTime dob, List<Allergy> allergies, List<Diagnosis> diagnosis, List<Medication> medications, CircularQueue<Temperature> temp, DateTime lastSeen) {
+	public Patient(String firstName, String lastName, Address address, List<PhoneNumber> phone, Date dob, List<Allergy> allergies, List<Diagnosis> diagnosis, List<Medication> medications, CircularQueue<Temperature> temp, Calendar lastSeen) {
 		super(firstName, lastName, address, phone);
 		this.allergies = allergies;
 		this.diagnosis = diagnosis;
@@ -26,44 +29,23 @@ public class Patient extends Person{
 		this.dob = dob;
 	}
 	
-	public Patient(String firstName, String lastName, Address address, Phone phone, DateTime dob,List<Allergy> allergies, List<Diagnosis> diagnosis, List<Medication> medications, CircularQueue<Temperature> temp) {
+	public Patient(String firstName, String lastName, Address address, List<PhoneNumber> phone, Date dob,List<Allergy> allergies, List<Diagnosis> diagnosis, List<Medication> medications, CircularQueue<Temperature> temp) {
 		super(firstName, lastName, address, phone);
 		this.allergies = allergies;
 		this.diagnosis = diagnosis;
 		this.medications = medications;
 		this.temp = temp;
-		lastSeen = new DateTime();
+		lastSeen = Calendar.getInstance();
 		this.dob = dob;
 	}
 	
-	public Patient(String firstName, String lastName, Address address, Phone phone, DateTime dob, List<Allergy> allergies, List<Diagnosis> diagnosis, List<Medication> medications) {
-		super(firstName, lastName, address, phone);
-		this.allergies = allergies;
-		this.diagnosis = diagnosis;
-		this.medications = medications;
-		lastSeen = new DateTime();
-		this.dob = dob;
-	}
-	
-	public Patient(String firstName, String lastName, Address address, Phone phone, DateTime dob, List<Allergy> allergies, List<Diagnosis> diagnosis) {
-		super(firstName, lastName, address, phone);
-		this.allergies = allergies;
-		this.diagnosis = diagnosis;
-		lastSeen = new DateTime();
-		this.dob = dob;
-	}
-	
-	public Patient(String firstName, String lastName, Address address, Phone phone, DateTime dob, List<Allergy> allergies) {
-		super(firstName, lastName, address, phone);
-		this.allergies = allergies;
-		lastSeen = new DateTime();
-		this.dob = dob;
-	}
-	
-	public Patient(String firstName, String lastName, Address address, Phone phone, DateTime dob) {
-		super(firstName, lastName, address, phone);
-		lastSeen = new DateTime();
-		this.dob = dob;
+	public Patient() {
+		super();
+		allergies = new ArrayList<Allergy>();
+		diagnosis = new ArrayList<Diagnosis>();
+		medications = new ArrayList<Medication>();
+		temp = new CircularQueue<Temperature>();
+		lastSeen = Calendar.getInstance();
 	}
 	
 	public void setAllergies(List<Allergy> allergies) {
@@ -82,11 +64,27 @@ public class Patient extends Person{
 		this.temp = temp;
 	}
 	
-	public void setLastSeenDate(DateTime lastSeen) {
-		this.lastSeen = lastSeen;
+	public void setLastSeenDate(Date lastSeen) {
+		this.lastSeen.setTime(lastSeen);
 	}
 	
-	public void setDob(DateTime dob) {
+	public void addAllergy(Allergy x) {
+		allergies.add(x);
+	}
+	
+	public void addDiagnosis(Diagnosis x) {
+		diagnosis.add(x);
+	}
+	
+	public void addMedications(Medication x) {
+		medications.add(x);
+	}
+	
+	public void addTemperature(Temperature x) {
+		temp.add(x);
+	}
+	
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 	
@@ -106,11 +104,11 @@ public class Patient extends Person{
 		return temp;
 	}
 	
-	public DateTime getLastSeenDate() {
-		return lastSeen;
+	public Date getLastSeenDate() {
+		return lastSeen.getTime();
 	}
 	
-	public DateTime getDob() {
+	public Date getDob() {
 		return dob;
 	}
 

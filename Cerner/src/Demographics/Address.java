@@ -61,6 +61,8 @@ public class Address {
 		return country;
 	}
 	
-
+	public String toString() {
+		return String.format("%s\n%s, %s %s\n", street, city, state, zip);
+	}
 
 }

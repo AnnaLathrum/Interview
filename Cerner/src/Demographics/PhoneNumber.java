@@ -39,6 +39,6 @@ public class PhoneNumber {
 	}
 	
 	public String toString() {
-		return String.format("(" + phoneNumber.substring(0, 2) + ")" + phoneNumber.substring(3, 5) + "-" + phoneNumber.substring(6));
+		return String.format("(" + phoneNumber.substring(0, 3) + ")" + phoneNumber.substring(3, 6) + "-" + phoneNumber.substring(6));
 	}
 }

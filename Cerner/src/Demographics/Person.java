@@ -1,19 +1,26 @@
 package Demographics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Person {
 	public String firstName;
 	public String lastName;
 	public Address address;
-	public Phone phone;
+	public List<PhoneNumber> phone;
 	
-	public Person(String firstName, String lastName, Address address, Phone phone) {
+	public Person() {
+		phone = new ArrayList<PhoneNumber>();
+	}
+	
+	public Person(String firstName, String lastName, Address address, List<PhoneNumber> phone) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.phone = phone;
 	}
 	
-	public void setFistName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 	
@@ -25,8 +32,12 @@ public class Person {
 		this.address = address;
 	}
 	
-	public void setPhone(Phone phone) {
+	public void setPhone(List<PhoneNumber> phone) {
 		this.phone = phone;
+	}
+	
+	public void addPhone(PhoneNumber number) {
+		phone.add(number);
 	}
 	
 	public String getFirstName() {
@@ -41,7 +52,7 @@ public class Person {
 		return address;
 	}
 	
-	public Phone getPhone() {
+	public List<PhoneNumber> getPhone() {
 		return phone;
 	}
 }
